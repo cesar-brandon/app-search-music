@@ -1,0 +1,44 @@
+@use "../abstracts/variables" as *;
+
+.Controls {
+  width: 100%;
+  height: 100%;
+  height: 5rem;
+  display: grid;
+  grid-template-columns: 80% 1fr;
+
+  &__slide {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin: 0;
+
+    .bar {
+      width: 100%;
+      height: 0.5rem;
+      border-radius: 10px;
+      background-color: $light;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 300ms;
+    }
+    .duration {
+      height: 2.2rem;
+      font-size: 1.2rem;
+    }
+  }
+  &__play {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: end;
+
+    svg {
+      color: $light;
+      fill: $light;
+    }
+  }
+}

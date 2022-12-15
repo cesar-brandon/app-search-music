@@ -1,0 +1,14 @@
+@use "./abstracts/mixins";
+@use "./abstracts/variables";
+
+@use "./components/slider";
+@use "./components/date";
+@use "./components/searchBar";
+@use "./components/controls";
+@use "./components/trackInfo";
+@use "./components/trackOptions";
+@use "./components/trackAditionals";
+
+@use "./layout/search";
+@use "./layout/cardMusic";
+@use "./layout/header";

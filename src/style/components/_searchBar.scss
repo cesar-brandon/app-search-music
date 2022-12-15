@@ -1,0 +1,57 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.search__bar {
+  position: absolute;
+  top: 50%;
+  left: 22%;
+  width: 20rem;
+  height: 3rem;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 17px 13px 31px -6px rgba(0, 0, 0, 0.5);
+  z-index: 120;
+  background-color: #fff;
+
+  form {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 16%;
+    place-items: center;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    width: 2.5rem;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: all 300ms;
+
+    &:hover {
+      @include themify($themes) {
+        background: rgba($color: themed("primary"), $alpha: 1);
+      }
+    }
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding-left: 1rem;
+    font-size: 18px;
+    font-family: "Oswald", sans-serif;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

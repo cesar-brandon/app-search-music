@@ -1,0 +1,16 @@
+@use "../abstracts/mixins" as *;
+
+.Date {
+  font-family: "Six Caps", sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include themify($themes) {
+    color: themed("primary");
+  }
+}

@@ -1,0 +1,22 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.TrackAditionals {
+  svg {
+    width: 4rem;
+    height: 4rem;
+    padding: 0.8rem;
+    background: $lightTransparent;
+    border-radius: 50%;
+    fill: $light;
+    color: $light;
+    cursor: pointer;
+    transition: all 300ms;
+    &:hover {
+      @include themify($themes) {
+        fill: themed("primary");
+        color: themed("primary");
+      }
+    }
+  }
+}
