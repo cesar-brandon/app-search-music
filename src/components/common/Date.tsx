@@ -7,7 +7,7 @@ export default function Date() {
 
   return (
     <div className="Date">
-      <p>Marzo 18</p>
+      <p>December 15</p>
     </div>
   );
 }
