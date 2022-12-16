@@ -5,7 +5,7 @@ import TrackInfo from "./TrackInfo";
 export default function TrackOptions() {
   return (
     <div className="TrackOptions">
-      <TrackInfo />
+      <TrackInfo state={""} />
       <TrackControls />
       <TrackAditionals />
     </div>

@@ -6,10 +6,10 @@ import { TrackControls, TrackInfo, TrackOptions } from "../common";
 export default function CardMusic() {
   const [flip, setFlip] = useState("");
   const {
-    state: { track },
+    state: { selectedTrack, artists },
   } = useContext(TrackContext);
 
-  const { name, album, artists } = track;
+  const { name, album } = selectedTrack;
 
   const trackImage = album?.images[0].url;
 
@@ -54,13 +54,13 @@ export default function CardMusic() {
         <span className="CardMusic__backface">
           <span className="image">
             <div className="Artists">
-              <p>
-                {artists?.map((artist, index) => {
-                  return index === artists.length - 1
-                    ? artist.name
-                    : `${artist.name}, `;
-                })}
-              </p>
+              {artists?.map((artist) => (
+                <img
+                  key={artist.id}
+                  src={artist?.images[0].url}
+                  alt="artist-image"
+                />
+              ))}
             </div>
             <span className="unflip" onClick={() => unFlip()}>
               <svg

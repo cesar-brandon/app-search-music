@@ -56,10 +56,27 @@
     height: 100%;
     overflow: hidden;
 
-    img {
+    .image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      padding: 1rem;
+      box-sizing: border-box;
+
+      .Artists {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        grid-template-rows: 15rem 15rem;
+
+        img {
+          border-radius: 14px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
   }
 

@@ -3,18 +3,35 @@ import { TrackContext } from "../../context/Track/TrackContext";
 import getAccessToken from "../../utils/getAccessToken";
 
 export default function SearchBar() {
-  const { searchTrack } = useContext(TrackContext);
+  const {
+    state: { tracks, artists },
+    searchTracks,
+    getTrack,
+    getArtists,
+  } = useContext(TrackContext);
   const [searchContent, setSearchContent] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchContent(e.target.value);
-  };
+  const [separator, setSeparator] = useState(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // searchTrack(searchContent);
+    setSeparator(true);
+    setSearchContent(e.target.value);
     getAccessToken().then((token) => {
-      searchTrack(searchContent, token);
+      searchTracks(searchContent, token);
+    });
+  };
+
+  const setTrack = (track: any) => {
+    getAccessToken().then((token) => {
+      getTrack(track.id, token);
+    });
+  };
+
+  const setArtist = (artists: any) => {
+    getAccessToken().then((token) => {
+      const ids = artists.map((artist: any) => artist.id).join(",");
+
+      getArtists(ids, token);
     });
   };
 
@@ -25,7 +42,7 @@ export default function SearchBar() {
           type="text"
           placeholder="Search..."
           value={searchContent}
-          onChange={handleChange}
+          onChange={handleSubmit}
         />
 
         <button onClick={handleSubmit} type="submit">
@@ -45,6 +62,30 @@ export default function SearchBar() {
           </svg>
         </button>
       </form>
+      {separator && <span></span>}
+      {tracks.length > 0 &&
+        tracks.map((track, index) => (
+          <div
+            className="search__bar__track"
+            key={index}
+            onClick={() => {
+              setTrack(track);
+              setArtist(track.artists);
+            }}
+          >
+            <img src={track?.album?.images[0].url} alt="track-image" />
+            <div className="TrackInfo search">
+              <h4>{track?.album?.name}</h4>
+              <p>
+                {track?.album?.artists.map((artist, index) => {
+                  return index === track?.album?.artists.length - 1
+                    ? artist.name
+                    : artist.name + ", ";
+                })}
+              </p>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }

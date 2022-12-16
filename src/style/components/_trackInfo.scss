@@ -5,6 +5,22 @@
   top: 0;
   left: 0;
 
+  &.search {
+    color: $dark;
+
+    h4 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+      color: $darkTransparent;
+
+      &:before {
+        content: "by ";
+      }
+    }
+  }
+
   h4 {
     font-size: 2.5rem;
   }

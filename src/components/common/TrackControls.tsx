@@ -1,11 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
+import getAccessToken from "../../utils/getAccessToken";
+import axios from "axios";
 
 export default function TrackControls() {
   const {
-    state: { track },
+    state: { selectedTrack },
   } = useContext(TrackContext);
   const [play, setPlay] = useState(true);
+  const [player, setPlayer] = useState<any>(null);
 
   const togglePlay = () => {
     play ? setPlay(false) : setPlay(true);
@@ -18,7 +21,23 @@ export default function TrackControls() {
     return `${minutes}:${secondsString}`;
   };
 
-  const { duration_ms } = track;
+  const { duration_ms } = selectedTrack;
+
+  const playTrack = async () => {
+    const accessToken = await getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const body = {
+      uris: [selectedTrack.uri],
+    };
+    const response = await axios.put(
+      "https://api.spotify.com/v1/me/player/play",
+      body,
+      { headers }
+    );
+    console.log(response);
+  };
 
   return (
     <div className="Controls">
@@ -28,7 +47,7 @@ export default function TrackControls() {
           {duration_ms ? calculateTime(duration_ms / 1000) : "0:00"}
         </div>
       </div>
-      <div className="Controls__play" onClick={togglePlay}>
+      <div className="Controls__play" onClick={playTrack}>
         {play ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"

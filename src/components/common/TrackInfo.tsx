@@ -1,15 +1,19 @@
 import { useContext } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
 
-export default function TrackInfo() {
+interface Props {
+  state: string;
+}
+
+export default function TrackInfo({ state }: Props) {
   const {
-    state: { track },
+    state: { selectedTrack },
   } = useContext(TrackContext);
 
-  const { name, album, artists } = track;
+  const { name, album, artists } = selectedTrack;
 
   return (
-    <div className="TrackInfo">
+    <div className={`TrackInfo ${state}`}>
       <h4>{name}</h4>
       <p>
         {artists?.map((artist, index) => {

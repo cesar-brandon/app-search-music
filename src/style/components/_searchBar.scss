@@ -5,17 +5,20 @@
   position: absolute;
   top: 50%;
   left: 22%;
-  width: 20rem;
-  height: 3rem;
+  width: 22rem;
+  height: auto;
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 17px 13px 31px -6px rgba(0, 0, 0, 0.5);
   z-index: 120;
   background-color: #fff;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 
   form {
     width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: 1fr 16%;
     place-items: center;
@@ -52,6 +55,36 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  span {
+    margin: 0 auto;
+    width: 5rem;
+    height: 5px;
+    border-radius: 20px;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+  }
+
+  &__track {
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;
+    gap: 1rem;
+    cursor: pointer;
+    align-items: center;
+    transition: all 300ms;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: rgba($color: #757575, $alpha: 0.1);
+    }
+
+    img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 10px;
+      object-fit: cover;
     }
   }
 }

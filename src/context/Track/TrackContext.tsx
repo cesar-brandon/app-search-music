@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { ITrackState } from "../../models/Track";
+import { ITrack, ITrackState } from "../../models/Track";
 
 export type ITrackContextProps = {
   state: ITrackState;
-  searchTrack: (name: string, token: string) => void;
-  playTrack: (id: string) => void;
-  nextTrack: () => void;
+  searchTracks: (name: string, token: string) => void;
+  getTrack: (id: string, token: string) => void;
+  getArtists: (id: string, token: string) => void;
 };
 
 export const TrackContext = createContext<ITrackContextProps>(
