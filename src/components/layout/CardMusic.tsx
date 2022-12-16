@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
+import { IArtist } from "../../models/Track";
 import { calculateAngle } from "../../utils/calculateAngle";
 import { TrackControls, TrackInfo, TrackOptions } from "../common";
 
@@ -18,34 +19,120 @@ export default function CardMusic() {
   };
 
   useEffect(() => {
-    document
-      .querySelectorAll(".CardMusic")
-      .forEach(function (item: Element | any) {
-        item.addEventListener("mouseenter", function (e: Event) {
-          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
+    //remove everything if screen size is less than 720px
+    console.log(window.innerWidth);
+    if (window.innerWidth < 720) {
+      document
+        .querySelectorAll(".CardMusic")
+        .forEach(function (item: Element | any) {
+          item.removeEventListener("mouseenter", function (e: Event) {
+            calculateAngle(
+              e,
+              item.querySelector(".CardMusic__frontface"),
+              item
+            );
+          });
+          item.removeEventListener("mousemove", function (e: Event) {
+            calculateAngle(
+              e,
+              item.querySelector(".CardMusic__frontface"),
+              item
+            );
+          });
+          item.removeEventListener("mouseleave", function (e: Event) {
+            let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
+            if (item.getAttribute("data-filter-color") !== null) {
+              dropShadowColor = item.getAttribute("data-filter-color");
+            }
+            item.classList.remove("animated");
+            item.querySelector(
+              ".CardMusic__frontface"
+            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+            item.querySelector(
+              ".CardMusic__backface"
+            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
+            item.querySelector(
+              ".CardMusic__frontface"
+            ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
+          });
         });
+    } else {
+      document
+        .querySelectorAll(".CardMusic")
+        .forEach(function (item: Element | any) {
+          item.addEventListener("mouseenter", function (e: Event) {
+            calculateAngle(
+              e,
+              item.querySelector(".CardMusic__frontface"),
+              item
+            );
+          });
 
-        item.addEventListener("mousemove", function (e: Event) {
-          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
-        });
+          item.addEventListener("mousemove", function (e: Event) {
+            calculateAngle(
+              e,
+              item.querySelector(".CardMusic__frontface"),
+              item
+            );
+          });
 
-        item.addEventListener("mouseleave", function (e: Event) {
-          let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
-          if (item.getAttribute("data-filter-color") !== null) {
-            dropShadowColor = item.getAttribute("data-filter-color");
-          }
-          item.classList.remove("animated");
-          item.querySelector(
-            ".CardMusic__frontface"
-          ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
-          item.querySelector(
-            ".CardMusic__backface"
-          ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
-          item.querySelector(
-            ".CardMusic__frontface"
-          ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
+          item.addEventListener("mouseleave", function (e: Event) {
+            let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
+            if (item.getAttribute("data-filter-color") !== null) {
+              dropShadowColor = item.getAttribute("data-filter-color");
+            }
+            item.classList.remove("animated");
+            item.querySelector(
+              ".CardMusic__frontface"
+            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+            item.querySelector(
+              ".CardMusic__backface"
+            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
+            item.querySelector(
+              ".CardMusic__frontface"
+            ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
+          });
         });
-      });
+    }
+
+    return () => {
+      document
+        .querySelectorAll(".CardMusic")
+        .forEach(function (item: Element | any) {
+          item.removeEventListener("mouseenter", function (e: Event) {
+            calculateAngle(
+              e,
+              item.querySelector(".CardMusic__frontface"),
+              item
+            );
+          });
+
+          item.removeEventListener("mousemove", function (e: Event) {
+            calculateAngle(
+              e,
+              item.querySelector(".CardMusic__frontface"),
+              item
+            );
+          });
+
+          item.removeEventListener("mouseleave", function (e: Event) {
+            let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
+            if (item.getAttribute("data-filter-color") !== null) {
+              dropShadowColor = item.getAttribute("data-filter-color");
+            }
+            item.classList.remove("animated");
+            item.querySelector(
+              ".CardMusic__frontface"
+            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+            item.querySelector(
+              ".CardMusic__backface"
+            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
+            item.querySelector(
+              ".CardMusic__frontface"
+            ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
+          });
+        });
+    };
   }, []);
 
   return (
@@ -54,10 +141,10 @@ export default function CardMusic() {
         <span className="CardMusic__backface">
           <span className="image">
             <div className="Artists">
-              {artists?.map((artist) => (
+              {artists?.map((artist: IArtist) => (
                 <img
                   key={artist.id}
-                  src={artist?.images[0].url}
+                  src={artist.images![0].url}
                   alt="artist-image"
                 />
               ))}

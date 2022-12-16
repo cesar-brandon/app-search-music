@@ -14,3 +14,9 @@
     color: themed("primary");
   }
 }
+
+@media (max-width: 768px) {
+  .Date {
+    display: none;
+  }
+}

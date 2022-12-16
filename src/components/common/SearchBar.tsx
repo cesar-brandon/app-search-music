@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
+import { ITrack } from "../../models/Track";
 import getAccessToken from "../../utils/getAccessToken";
 
 export default function SearchBar() {
@@ -33,6 +34,12 @@ export default function SearchBar() {
 
       getArtists(ids, token);
     });
+  };
+
+  const clearSearch = () => {
+    setSeparator(false);
+    setSearchContent("");
+    tracks.length = 0;
   };
 
   return (
@@ -71,6 +78,7 @@ export default function SearchBar() {
             onClick={() => {
               setTrack(track);
               setArtist(track.artists);
+              clearSearch();
             }}
           >
             <img src={track?.album?.images[0].url} alt="track-image" />

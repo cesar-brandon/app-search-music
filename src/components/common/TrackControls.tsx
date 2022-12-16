@@ -47,7 +47,7 @@ export default function TrackControls() {
           {duration_ms ? calculateTime(duration_ms / 1000) : "0:00"}
         </div>
       </div>
-      <div className="Controls__play" onClick={playTrack}>
+      <div className="Controls__play" onClick={togglePlay}>
         {play ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"

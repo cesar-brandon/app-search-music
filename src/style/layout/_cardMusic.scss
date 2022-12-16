@@ -27,6 +27,7 @@
   transition: all 0.2s ease-out;
   border: none;
   letter-spacing: 1px;
+  box-sizing: border-box;
 
   .track .CardMusic__backface .image {
     position: absolute;
@@ -208,4 +209,44 @@
 }
 .CardMusic.animated .glare {
   opacity: 0.3;
+}
+
+@media (max-width: 1400px) {
+  .CardMusic__container {
+    width: 100%;
+    height: 100%;
+    align-items: end;
+
+    .CardMusic {
+      margin: 0 0 3rem 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 640px) {
+  .CardMusic__container {
+    height: 100%;
+    width: 100%;
+    .CardMusic {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      transform-style: none;
+
+      &__frontface {
+        transform: none;
+
+        &__init {
+          padding: 0 1rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .CardMusic .flip-inner-card {
+    transform: none;
+  }
 }

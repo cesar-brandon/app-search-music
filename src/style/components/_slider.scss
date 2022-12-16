@@ -90,3 +90,24 @@
     left: 100%;
   }
 }
+
+@media (max-width: 1400px) {
+  .Slider__item {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Slider__item {
+    font-size: 5rem;
+    img {
+      width: 5rem;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .Slider {
+    display: none;
+  }
+}

@@ -108,3 +108,34 @@
     }
   }
 }
+@media (max-width: 1400px) {
+  .Header {
+    width: 100vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .Header {
+    width: 20vw;
+    height: 3rem;
+    grid-template-columns: 1fr;
+    right: 0;
+    top: 2.5%;
+    padding: 0;
+    font-size: 0.8rem;
+
+    h1 {
+      display: none;
+    }
+
+    strong {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .Header {
+    display: none;
+  }
+}
