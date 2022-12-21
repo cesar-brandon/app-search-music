@@ -9,4 +9,6 @@
 body {
 		font-family: 'Oswald', sans-serif;
 		background: #110f17;
+		-webkit-tap-highlight-color: transparent;
 }
+

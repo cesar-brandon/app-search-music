@@ -1,0 +1,77 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.Login {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+  background-color: $darkTransparent;
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__form {
+    margin: 1rem;
+    padding: 6rem;
+    box-sizing: border-box;
+    width: 30rem;
+    max-height: 35rem;
+    min-height: 30rem;
+    background-color: $light;
+    border-radius: 1rem;
+    color: $dark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.2rem;
+
+    .ticket {
+      border-radius: 50%;
+      width: 5rem;
+      transition: all 300ms;
+      animation: ticket 1s infinite;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include themify($themes) {
+        color: themed("primary");
+      }
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    span {
+      font-size: 0.8rem;
+      color: $darkTransparent;
+      text-align: center;
+    }
+  }
+}
+
+@keyframes ticket {
+  0% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}

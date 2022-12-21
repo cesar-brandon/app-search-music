@@ -2,21 +2,66 @@
 @use "../abstracts/variables" as *;
 
 .TrackAditionals {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @include themify($themes) {
+    color: themed("primary");
+  }
+
+  &.liked {
+    svg {
+      @include themify($themes) {
+        fill: themed("primary");
+        background: $light;
+        stroke: themed("primary");
+        stroke-width: 1;
+      }
+    }
+    span {
+      animation: pulse 1s;
+    }
+  }
   svg {
     width: 4rem;
     height: 4rem;
     padding: 0.8rem;
-    background: $lightTransparent;
+    backdrop-filter: blur(3px);
     border-radius: 50%;
-    fill: $light;
+    fill: transparent;
+    stroke: $light;
+    stroke-width: 2;
     color: $light;
     cursor: pointer;
     transition: all 300ms;
     &:hover {
       @include themify($themes) {
-        fill: themed("primary");
-        color: themed("primary");
       }
     }
+    &:active {
+      @include themify($themes) {
+        background: themed("primary");
+        fill: themed("secondary");
+      }
+    }
+  }
+  span {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateX(-1rem);
+  }
+  50% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0rem);
+  }
+  100% {
+    transform: translateX(0.5rem);
   }
 }

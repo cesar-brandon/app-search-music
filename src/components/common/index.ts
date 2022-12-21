@@ -5,3 +5,4 @@ export { default as TrackControls } from "./TrackControls";
 export { default as TrackInfo } from "./TrackInfo";
 export { default as TrackOptions } from "./TrackOptions";
 export { default as TrackAditionals } from "./TrackAditionals";
+export { default as Button } from "./Button";

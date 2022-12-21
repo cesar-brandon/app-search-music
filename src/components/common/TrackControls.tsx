@@ -1,17 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
-import getAccessToken from "../../utils/getAccessToken";
 import axios from "axios";
+import { getAccessToken } from "../../utils/authorization";
 
 export default function TrackControls() {
   const {
     state: { selectedTrack },
   } = useContext(TrackContext);
-  const [play, setPlay] = useState(true);
-  const [player, setPlayer] = useState<any>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  let preview = new Audio(selectedTrack.preview_url);
 
   const togglePlay = () => {
-    play ? setPlay(false) : setPlay(true);
+    if (selectedTrack !== null) {
+      if (preview.paused) {
+        preview.play();
+        return console.log("play");
+      }
+      preview.pause();
+    }
   };
 
   const calculateTime = (time: number) => {
@@ -23,22 +30,6 @@ export default function TrackControls() {
 
   const { duration_ms } = selectedTrack;
 
-  const playTrack = async () => {
-    const accessToken = await getAccessToken();
-    const headers = {
-      Authorization: `Bearer ${accessToken}`,
-    };
-    const body = {
-      uris: [selectedTrack.uri],
-    };
-    const response = await axios.put(
-      "https://api.spotify.com/v1/me/player/play",
-      body,
-      { headers }
-    );
-    console.log(response);
-  };
-
   return (
     <div className="Controls">
       <div className="Controls__slide">
@@ -48,11 +39,11 @@ export default function TrackControls() {
         </div>
       </div>
       <div className="Controls__play" onClick={togglePlay}>
-        {play ? (
+        {isPlaying ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="currentColor"
+            fill="curretruentColor"
             className="w-6 h-6"
           >
             <path

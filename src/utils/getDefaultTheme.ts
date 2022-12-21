@@ -1,5 +1,5 @@
 export const getDefaultTheme = () => {
   const localStorageTheme = localStorage.getItem("default-theme");
 
-  return localStorageTheme ? localStorageTheme : "violet";
+  return localStorageTheme ? localStorageTheme : "red";
 };

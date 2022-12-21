@@ -1,13 +1,34 @@
-import { useState } from "react";
+import dayjs from "dayjs";
+import updateLocale from "dayjs/plugin/updateLocale";
+
+dayjs.extend(updateLocale);
+
+dayjs.updateLocale("en", {
+  months: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+});
 
 export default function Date() {
-  const [date, setDate] = useState("");
-
-  const getDate = () => {};
+  const getDate = () => {
+    const today = dayjs().format("MMMM D");
+    return today;
+  };
 
   return (
     <div className="Date">
-      <p>December 15</p>
+      <p>{getDate()}</p>
     </div>
   );
 }

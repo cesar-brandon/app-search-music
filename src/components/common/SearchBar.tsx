@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
 import { ITrack } from "../../models/Track";
-import getAccessToken from "../../utils/getAccessToken";
 
 export default function SearchBar() {
   const {
-    state: { tracks, artists },
+    state: { tracks, selectedTrack },
     searchTracks,
     getTrack,
     getArtists,
   } = useContext(TrackContext);
+
   const [searchContent, setSearchContent] = useState("");
   const [separator, setSeparator] = useState(false);
 
@@ -17,29 +17,26 @@ export default function SearchBar() {
     e.preventDefault();
     setSeparator(true);
     setSearchContent(e.target.value);
-    getAccessToken().then((token) => {
-      searchTracks(searchContent, token);
-    });
+    searchTracks(searchContent);
   };
 
+  let preview = new Audio(selectedTrack.preview_url);
+
   const setTrack = (track: any) => {
-    getAccessToken().then((token) => {
-      getTrack(track.id, token);
-    });
+    getTrack(track.id);
   };
 
   const setArtist = (artists: any) => {
-    getAccessToken().then((token) => {
-      const ids = artists.map((artist: any) => artist.id).join(",");
+    const ids = artists.map((artist: any) => artist.id).join(",");
 
-      getArtists(ids, token);
-    });
+    getArtists(ids);
   };
 
   const clearSearch = () => {
     setSeparator(false);
     setSearchContent("");
     tracks.length = 0;
+    preview.load();
   };
 
   return (

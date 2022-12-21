@@ -10,7 +10,7 @@ export default function CardMusic() {
     state: { selectedTrack, artists },
   } = useContext(TrackContext);
 
-  const { name, album } = selectedTrack;
+  const { album } = selectedTrack;
 
   const trackImage = album?.images[0].url;
 
@@ -20,7 +20,6 @@ export default function CardMusic() {
 
   useEffect(() => {
     //remove everything if screen size is less than 720px
-    console.log(window.innerWidth);
     if (window.innerWidth < 720) {
       document
         .querySelectorAll(".CardMusic")
@@ -195,7 +194,7 @@ export default function CardMusic() {
             </>
           ) : (
             <div className="CardMusic__frontface__init">
-              <p>Busque su Cancion Favorita</p>
+              <p>Busca tu Canción Favorita</p>
             </div>
           )}
           <span className="glare"></span>

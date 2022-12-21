@@ -70,4 +70,6 @@ export interface ITrackState {
   tracks: ITrack[];
   selectedTrack: ITrack;
   artists: IArtist[];
+  codeVerifier: string;
+  accessToken: string;
 }

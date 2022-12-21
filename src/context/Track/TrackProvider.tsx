@@ -7,6 +7,8 @@ const INITIAL_STATE = {
   tracks: [],
   selectedTrack: {},
   artists: [],
+  codeVerifier: "",
+  accessToken: "",
 };
 
 interface Props {
@@ -16,14 +18,14 @@ interface Props {
 export default function TrackProvider({ children }: Props) {
   const [state, dispatch] = useReducer(TrackReducer, INITIAL_STATE);
 
-  const searchTracks = async (name: string, token: string) => {
+  const searchTracks = async (name: string) => {
     try {
       const { data } = await axios({
         method: "GET",
         url: `https://api.spotify.com/v1/search?q=${name}&type=track&limit=3`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -36,14 +38,14 @@ export default function TrackProvider({ children }: Props) {
     }
   };
 
-  const getTrack = async (id: string, token: string) => {
+  const getTrack = async (id: string) => {
     try {
       const { data } = await axios({
         method: "GET",
         url: `https://api.spotify.com/v1/tracks/${id}`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -56,14 +58,14 @@ export default function TrackProvider({ children }: Props) {
     }
   };
 
-  const getArtists = async (ids: string, token: string) => {
+  const getArtists = async (ids: string) => {
     try {
       const { data } = await axios({
         method: "GET",
         url: `https://api.spotify.com/v1/artists?ids=${ids}`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
       dispatch({
@@ -75,9 +77,50 @@ export default function TrackProvider({ children }: Props) {
     }
   };
 
+  const playTrack = async (uri: string) => {
+    try {
+      await axios.put(`https://api.spotify.com/v1/me/player/play`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.accessToken}`,
+        },
+        data: {
+          context_uri: uri,
+        },
+        offset: {
+          position: 5,
+        },
+        position_ms: 0,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const setCode = (code: string) => {
+    dispatch({
+      type: "SET_CODE",
+      payload: code,
+    });
+  };
+  const setToken = (token: string) => {
+    dispatch({
+      type: "SET_TOKEN",
+      payload: token,
+    });
+  };
+
   return (
     <TrackContext.Provider
-      value={{ state, searchTracks, getTrack, getArtists }}
+      value={{
+        state,
+        searchTracks,
+        getTrack,
+        getArtists,
+        playTrack,
+        setToken,
+        setCode,
+      }}
     >
       {children}
     </TrackContext.Provider>
