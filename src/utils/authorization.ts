@@ -1,5 +1,8 @@
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../api/credentials";
 import axios from "axios";
+
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
+const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 const SPACE_DEMILIMITER = "%20";

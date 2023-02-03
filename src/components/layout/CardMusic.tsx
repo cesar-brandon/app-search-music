@@ -7,13 +7,12 @@ import { TrackOptions } from "../common";
 export default function CardMusic() {
   const [flip, setFlip] = useState("");
   const {
-    state: { selectedTrack, artists, preview },
+    state: { selectedTrack, artists },
   } = useContext(TrackContext);
 
   const { album } = selectedTrack;
-  console.log(selectedTrack);
 
-  const trackImage = album?.images[0].url;
+  const trackImage = album?.images[0]?.url;
 
   const unFlip = () => {
     flip === "flipped" ? setFlip("") : setFlip("flipped");

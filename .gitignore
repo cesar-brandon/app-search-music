@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Credentials
-src/api/credentials.ts
+.env
