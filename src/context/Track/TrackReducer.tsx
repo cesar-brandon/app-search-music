@@ -5,7 +5,8 @@ type ITrackAction =
   | { type: "SELECT_TRACK"; payload: {} }
   | { type: "GET_ARTISTS"; payload: [] }
   | { type: "SET_TOKEN"; payload: string }
-  | { type: "SET_CODE"; payload: string };
+  | { type: "SET_CODE"; payload: string }
+  | { type: "SET_AUDIO"; payload: string };
 
 export const TrackReducer = (state: ITrackState, action: ITrackAction) => {
   const { type, payload } = action;
@@ -32,6 +33,11 @@ export const TrackReducer = (state: ITrackState, action: ITrackAction) => {
         code: payload,
       };
     case "SET_TOKEN":
+      return {
+        ...state,
+        accessToken: payload,
+      };
+    case "SET_AUDIO":
       return {
         ...state,
         accessToken: payload,

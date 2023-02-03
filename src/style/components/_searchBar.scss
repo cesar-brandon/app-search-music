@@ -9,9 +9,11 @@
   height: auto;
   border-radius: 30px;
   overflow: hidden;
-  box-shadow: 17px 13px 31px -6px rgba(0, 0, 0, 0.5);
   z-index: 120;
-  background-color: #fff;
+  box-shadow: 17px 12px 31px -6px rgba(0, 0, 0, 0.4);
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid $lightTransparent;
   padding: 0.5rem;
   box-sizing: border-box;
   display: flex;
@@ -37,6 +39,8 @@
     padding: 0.4rem;
     border-radius: 50%;
     transition: all 300ms;
+    color: $light;
+    mix-blend-mode: difference;
 
     &:hover {
       @include themify($themes) {
@@ -52,9 +56,15 @@
     padding-left: 1rem;
     font-size: 18px;
     font-family: "Oswald", sans-serif;
+    background-color: transparent;
+    color: $light;
+    mix-blend-mode: difference;
 
     &:focus {
       outline: none;
+    }
+    &::placeholder {
+      color: rgba($color: #fff, $alpha: 0.6);
     }
   }
 

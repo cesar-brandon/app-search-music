@@ -7,7 +7,7 @@ import { TrackControls, TrackInfo, TrackOptions } from "../common";
 export default function CardMusic() {
   const [flip, setFlip] = useState("");
   const {
-    state: { selectedTrack, artists },
+    state: { selectedTrack, artists, preview },
   } = useContext(TrackContext);
 
   const { album } = selectedTrack;

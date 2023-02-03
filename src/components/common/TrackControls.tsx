@@ -1,23 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
-import axios from "axios";
-import { getAccessToken } from "../../utils/authorization";
 
 export default function TrackControls() {
   const {
-    state: { selectedTrack },
+    state: { selectedTrack, preview },
   } = useContext(TrackContext);
   const [isPlaying, setIsPlaying] = useState(true);
-
-  let preview = new Audio(selectedTrack.preview_url);
+  const [status, setStatus] = useState("available");
 
   const togglePlay = () => {
-    if (selectedTrack !== null) {
-      if (preview.paused) {
-        preview.play();
-        return console.log("play");
-      }
+    if (!preview) return console.log("No preview available");
+
+    if (!preview.paused) {
       preview.pause();
+      setIsPlaying(false);
+    } else {
+      preview.play();
+      setIsPlaying(true);
     }
   };
 
@@ -39,7 +38,7 @@ export default function TrackControls() {
         </div>
       </div>
       <div className="Controls__play" onClick={togglePlay}>
-        {isPlaying ? (
+        {!isPlaying ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

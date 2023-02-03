@@ -68,8 +68,9 @@ export interface ITrack {
 
 export interface ITrackState {
   tracks: ITrack[];
-  selectedTrack: ITrack;
+  selectedTrack: {};
   artists: IArtist[];
   codeVerifier: string;
   accessToken: string;
+  preview: HTMLAudioElement;
 }

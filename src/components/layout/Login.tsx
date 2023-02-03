@@ -43,8 +43,8 @@ export default function Login() {
           <form className="Login__form">
             <h2>Generar token</h2>
             <span>
-              Busca canciones ilimitadaspero solo prodras reproducir un preview
-              de 30s
+              Busca canciones ilimitadas, pero solo prodras reproducir un
+              preview de 30s
             </span>
             <div className="ticket" onClick={handleSubmit}>
               <svg
@@ -59,10 +59,6 @@ export default function Login() {
                 />
               </svg>
             </div>
-            <p>ó</p>
-            <h2>Inicia Sesion con spotify</h2>
-            <span>Sin limitaciones</span>
-            <Button content="Spotify" onClick={() => {}} state="success" />
           </form>
         </div>
       )}

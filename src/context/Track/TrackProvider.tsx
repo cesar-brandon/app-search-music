@@ -2,13 +2,15 @@ import { useReducer } from "react";
 import axios from "axios";
 import { TrackContext } from "./TrackContext";
 import { TrackReducer } from "./TrackReducer";
+import { ITrackState } from "../../models/Track";
 
-const INITIAL_STATE = {
+const initialState: ITrackState = {
   tracks: [],
   selectedTrack: {},
   artists: [],
   codeVerifier: "",
   accessToken: "",
+  preview: new Audio(),
 };
 
 interface Props {
@@ -16,7 +18,7 @@ interface Props {
 }
 
 export default function TrackProvider({ children }: Props) {
-  const [state, dispatch] = useReducer(TrackReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(TrackReducer, initialState);
 
   const searchTracks = async (name: string) => {
     try {
@@ -109,6 +111,12 @@ export default function TrackProvider({ children }: Props) {
       payload: token,
     });
   };
+  const setAudio = (audio: string) => {
+    dispatch({
+      type: "SET_AUDIO",
+      payload: audio,
+    });
+  };
 
   return (
     <TrackContext.Provider
@@ -120,6 +128,7 @@ export default function TrackProvider({ children }: Props) {
         playTrack,
         setToken,
         setCode,
+        setAudio,
       }}
     >
       {children}

@@ -20,8 +20,6 @@ export default function SearchBar() {
     searchTracks(searchContent);
   };
 
-  let preview = new Audio(selectedTrack.preview_url);
-
   const setTrack = (track: any) => {
     getTrack(track.id);
   };
@@ -36,7 +34,6 @@ export default function SearchBar() {
     setSeparator(false);
     setSearchContent("");
     tracks.length = 0;
-    preview.load();
   };
 
   return (

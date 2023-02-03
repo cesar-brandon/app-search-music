@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ITrack, ITrackState } from "../../models/Track";
+import { ITrackState } from "../../models/Track";
 
 export type ITrackContextProps = {
   state: ITrackState;
@@ -9,6 +9,7 @@ export type ITrackContextProps = {
   playTrack: (uri: string) => void;
   setToken: (token: string) => void;
   setCode: (token: string) => void;
+  setAudio: (token: string) => void;
 };
 
 export const TrackContext = createContext<ITrackContextProps>(
