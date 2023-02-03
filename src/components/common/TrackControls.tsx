@@ -1,12 +1,26 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
 
 export default function TrackControls() {
   const {
     state: { selectedTrack, preview },
   } = useContext(TrackContext);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [status, setStatus] = useState("available");
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  console.log(preview ? "preview" : "no preview");
+
+  useEffect(() => {
+    setIsPlaying(true);
+    preview.load();
+    preview.play();
+
+    preview.addEventListener("ended", () => {
+      setIsPlaying(false);
+    });
+    return () => {
+      preview.removeEventListener("ended", () => {});
+    };
+  }, [selectedTrack]);
 
   const togglePlay = () => {
     if (!preview) return console.log("No preview available");

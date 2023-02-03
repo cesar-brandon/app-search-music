@@ -9,7 +9,7 @@ export type ITrackContextProps = {
   playTrack: (uri: string) => void;
   setToken: (token: string) => void;
   setCode: (token: string) => void;
-  setAudio: (token: string) => void;
+  setAudio: (audio: HTMLAudioElement) => void;
 };
 
 export const TrackContext = createContext<ITrackContextProps>(

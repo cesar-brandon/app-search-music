@@ -68,7 +68,7 @@ export interface ITrack {
 
 export interface ITrackState {
   tracks: ITrack[];
-  selectedTrack: {};
+  selectedTrack: ITrack;
   artists: IArtist[];
   codeVerifier: string;
   accessToken: string;

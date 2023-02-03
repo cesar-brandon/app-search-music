@@ -3,10 +3,11 @@ import axios from "axios";
 import { TrackContext } from "./TrackContext";
 import { TrackReducer } from "./TrackReducer";
 import { ITrackState } from "../../models/Track";
+import { emptyTrack } from "../../utils/emptyState";
 
 const initialState: ITrackState = {
   tracks: [],
-  selectedTrack: {},
+  selectedTrack: emptyTrack,
   artists: [],
   codeVerifier: "",
   accessToken: "",
@@ -111,7 +112,7 @@ export default function TrackProvider({ children }: Props) {
       payload: token,
     });
   };
-  const setAudio = (audio: string) => {
+  const setAudio = (audio: HTMLAudioElement) => {
     dispatch({
       type: "SET_AUDIO",
       payload: audio,

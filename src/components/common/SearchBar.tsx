@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
-import { ITrack } from "../../models/Track";
 
 export default function SearchBar() {
   const {
-    state: { tracks, selectedTrack },
+    state: { tracks, preview },
     searchTracks,
     getTrack,
     getArtists,
+    setAudio,
   } = useContext(TrackContext);
 
   const [searchContent, setSearchContent] = useState("");
@@ -22,6 +22,7 @@ export default function SearchBar() {
 
   const setTrack = (track: any) => {
     getTrack(track.id);
+    setAudio(new Audio(track.preview_url));
   };
 
   const setArtist = (artists: any) => {
@@ -34,6 +35,7 @@ export default function SearchBar() {
     setSeparator(false);
     setSearchContent("");
     tracks.length = 0;
+    preview.pause();
   };
 
   return (
@@ -75,12 +77,12 @@ export default function SearchBar() {
               clearSearch();
             }}
           >
-            <img src={track?.album?.images[0].url} alt="track-image" />
+            <img src={track.album.images[0].url} alt="track-image" />
             <div className="TrackInfo search">
-              <h4>{track?.album?.name}</h4>
+              <h4>{track.album.name}</h4>
               <p>
-                {track?.album?.artists.map((artist, index) => {
-                  return index === track?.album?.artists.length - 1
+                {track.album.artists.map((artist, index) => {
+                  return index === track.album.artists.length - 1
                     ? artist.name
                     : artist.name + ", ";
                 })}

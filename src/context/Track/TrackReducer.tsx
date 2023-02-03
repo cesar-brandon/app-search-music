@@ -1,12 +1,12 @@
-import { ITrackState } from "../../models/Track";
+import { ITrack, ITrackState } from "../../models/Track";
 
 type ITrackAction =
   | { type: "SEARCH_TRACKS"; payload: [] }
-  | { type: "SELECT_TRACK"; payload: {} }
+  | { type: "SELECT_TRACK"; payload: ITrack }
   | { type: "GET_ARTISTS"; payload: [] }
   | { type: "SET_TOKEN"; payload: string }
   | { type: "SET_CODE"; payload: string }
-  | { type: "SET_AUDIO"; payload: string };
+  | { type: "SET_AUDIO"; payload: HTMLAudioElement };
 
 export const TrackReducer = (state: ITrackState, action: ITrackAction) => {
   const { type, payload } = action;
@@ -40,7 +40,7 @@ export const TrackReducer = (state: ITrackState, action: ITrackAction) => {
     case "SET_AUDIO":
       return {
         ...state,
-        accessToken: payload,
+        preview: payload,
       };
     default:
       return state;

@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .Controls {
   width: 100%;
@@ -35,15 +36,18 @@
     cursor: pointer;
     display: flex;
     justify-content: end;
+    transition: all 300ms;
+
+    &:active {
+      svg {
+        fill: none;
+        stroke: $light;
+      }
+    }
 
     svg {
       color: $light;
       fill: $light;
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .Controls {
   }
 }

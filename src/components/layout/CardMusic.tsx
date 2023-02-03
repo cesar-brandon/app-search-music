@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { TrackContext } from "../../context/Track/TrackContext";
 import { IArtist } from "../../models/Track";
 import { calculateAngle } from "../../utils/calculateAngle";
-import { TrackControls, TrackInfo, TrackOptions } from "../common";
+import { TrackOptions } from "../common";
 
 export default function CardMusic() {
   const [flip, setFlip] = useState("");
@@ -11,6 +11,7 @@ export default function CardMusic() {
   } = useContext(TrackContext);
 
   const { album } = selectedTrack;
+  console.log(selectedTrack);
 
   const trackImage = album?.images[0].url;
 
