@@ -25,10 +25,30 @@
       overflow: hidden;
       cursor: pointer;
       transition: all 300ms;
+
+      .progress {
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 300ms;
+        border-radius: 10px;
+
+        @include themify($themes) {
+          background-color: themed("primary");
+        }
+      }
     }
     .duration {
       height: 2.2rem;
       font-size: 1.2rem;
+
+      .current {
+        @include themify($themes) {
+          color: themed("primary");
+        }
+      }
     }
   }
   &__play {

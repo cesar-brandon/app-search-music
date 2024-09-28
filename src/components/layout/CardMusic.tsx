@@ -21,116 +21,83 @@ export default function CardMusic() {
   useEffect(() => {
     //remove everything if screen size is less than 720px
     if (window.innerWidth < 720) {
-      document
-        .querySelectorAll(".CardMusic")
-        .forEach(function (item: Element | any) {
-          item.removeEventListener("mouseenter", function (e: Event) {
-            calculateAngle(
-              e,
-              item.querySelector(".CardMusic__frontface"),
-              item
-            );
-          });
-          item.removeEventListener("mousemove", function (e: Event) {
-            calculateAngle(
-              e,
-              item.querySelector(".CardMusic__frontface"),
-              item
-            );
-          });
-          item.removeEventListener("mouseleave", function (e: Event) {
-            let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
-            if (item.getAttribute("data-filter-color") !== null) {
-              dropShadowColor = item.getAttribute("data-filter-color");
-            }
-            item.classList.remove("animated");
-            item.querySelector(
-              ".CardMusic__frontface"
-            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
-            item.querySelector(
-              ".CardMusic__backface"
-            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
-            item.querySelector(
-              ".CardMusic__frontface"
-            ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
-          });
+      document.querySelectorAll(".CardMusic").forEach(function (
+        item: Element | any,
+      ) {
+        item.removeEventListener("mouseenter", function (e: Event) {
+          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
         });
+        item.removeEventListener("mousemove", function (e: Event) {
+          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
+        });
+        item.removeEventListener("mouseleave", function (e: Event) {
+          let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
+          if (item.getAttribute("data-filter-color") !== null) {
+            dropShadowColor = item.getAttribute("data-filter-color");
+          }
+          item.classList.remove("animated");
+          item.querySelector(".CardMusic__frontface").style.transform =
+            `rotateY(0deg) rotateX(0deg) scale(1)`;
+          item.querySelector(".CardMusic__backface").style.transform =
+            `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
+          item.querySelector(".CardMusic__frontface").style.filter =
+            `drop-shadow(0 10px 15px ${dropShadowColor})`;
+        });
+      });
     } else {
-      document
-        .querySelectorAll(".CardMusic")
-        .forEach(function (item: Element | any) {
-          item.addEventListener("mouseenter", function (e: Event) {
-            calculateAngle(
-              e,
-              item.querySelector(".CardMusic__frontface"),
-              item
-            );
-          });
-
-          item.addEventListener("mousemove", function (e: Event) {
-            calculateAngle(
-              e,
-              item.querySelector(".CardMusic__frontface"),
-              item
-            );
-          });
-
-          item.addEventListener("mouseleave", function (e: Event) {
-            let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
-            if (item.getAttribute("data-filter-color") !== null) {
-              dropShadowColor = item.getAttribute("data-filter-color");
-            }
-            item.classList.remove("animated");
-            item.querySelector(
-              ".CardMusic__frontface"
-            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
-            item.querySelector(
-              ".CardMusic__backface"
-            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
-            item.querySelector(
-              ".CardMusic__frontface"
-            ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
-          });
+      document.querySelectorAll(".CardMusic").forEach(function (
+        item: Element | any,
+      ) {
+        item.addEventListener("mouseenter", function (e: Event) {
+          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
         });
+
+        item.addEventListener("mousemove", function (e: Event) {
+          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
+        });
+
+        item.addEventListener("mouseleave", function (e: Event) {
+          let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
+          if (item.getAttribute("data-filter-color") !== null) {
+            dropShadowColor = item.getAttribute("data-filter-color");
+          }
+          item.classList.remove("animated");
+          item.querySelector(".CardMusic__frontface").style.transform =
+            `rotateY(0deg) rotateX(0deg) scale(1)`;
+          item.querySelector(".CardMusic__backface").style.transform =
+            `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
+          item.querySelector(".CardMusic__frontface").style.filter =
+            `drop-shadow(0 10px 15px ${dropShadowColor})`;
+        });
+      });
     }
 
     return () => {
-      document
-        .querySelectorAll(".CardMusic")
-        .forEach(function (item: Element | any) {
-          item.removeEventListener("mouseenter", function (e: Event) {
-            calculateAngle(
-              e,
-              item.querySelector(".CardMusic__frontface"),
-              item
-            );
-          });
-
-          item.removeEventListener("mousemove", function (e: Event) {
-            calculateAngle(
-              e,
-              item.querySelector(".CardMusic__frontface"),
-              item
-            );
-          });
-
-          item.removeEventListener("mouseleave", function (e: Event) {
-            let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
-            if (item.getAttribute("data-filter-color") !== null) {
-              dropShadowColor = item.getAttribute("data-filter-color");
-            }
-            item.classList.remove("animated");
-            item.querySelector(
-              ".CardMusic__frontface"
-            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
-            item.querySelector(
-              ".CardMusic__backface"
-            ).style.transform = `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
-            item.querySelector(
-              ".CardMusic__frontface"
-            ).style.filter = `drop-shadow(0 10px 15px ${dropShadowColor})`;
-          });
+      document.querySelectorAll(".CardMusic").forEach(function (
+        item: Element | any,
+      ) {
+        item.removeEventListener("mouseenter", function (e: Event) {
+          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
         });
+
+        item.removeEventListener("mousemove", function (e: Event) {
+          calculateAngle(e, item.querySelector(".CardMusic__frontface"), item);
+        });
+
+        item.removeEventListener("mouseleave", function (e: Event) {
+          let dropShadowColor: string | null = `rgba(0, 0, 0, 0.3)`;
+          if (item.getAttribute("data-filter-color") !== null) {
+            dropShadowColor = item.getAttribute("data-filter-color");
+          }
+          item.classList.remove("animated");
+          item.querySelector(".CardMusic__frontface").style.transform =
+            `rotateY(0deg) rotateX(0deg) scale(1)`;
+          item.querySelector(".CardMusic__backface").style.transform =
+            `rotateY(0deg) rotateX(0deg) scale(1.01) translateZ(-4px)`;
+          item.querySelector(".CardMusic__frontface").style.filter =
+            `drop-shadow(0 10px 15px ${dropShadowColor})`;
+        });
+      });
     };
   }, []);
 
@@ -141,11 +108,18 @@ export default function CardMusic() {
           <span className="image">
             <div className="Artists">
               {artists?.map((artist: IArtist) => (
-                <img
-                  key={artist.id}
-                  src={artist.images![0].url}
-                  alt="artist-image"
-                />
+                <div className="Artist__card" key={artist.id}>
+                  <img src={artist.images![0].url} alt="artist-image" />
+
+                  <div className="Artist__card__info">
+                    <h4>{artist.name}</h4>
+                    {artist.genres && artist.genres.length > 0 && (
+                      <p className="Artist__info__genres">
+                        {artist.genres.join(" / ")}
+                      </p>
+                    )}
+                  </div>
+                </div>
               ))}
             </div>
             <span className="unflip" onClick={() => unFlip()}>

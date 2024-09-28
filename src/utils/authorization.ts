@@ -40,5 +40,11 @@ export const getAccessToken = async () => {
     data: "grant_type=client_credentials",
   });
   localStorage.setItem("access_token", data.access_token);
+
   return data.access_token;
+};
+
+export const isTokenExpired = () => {
+  const currentTime = new Date().getTime() / 1000;
+  return currentTime > 3600;
 };

@@ -47,6 +47,23 @@
       }
     }
 
+    .ticket-load {
+      animation: loading 1s linear infinite;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0 0 0;
+
+      svg {
+        width: 4rem;
+        height: 4rem;
+        @include themify($themes) {
+          stroke: themed("primary");
+        }
+      }
+    }
+
     p {
       text-align: center;
       font-size: 1.5rem;
@@ -73,5 +90,14 @@
   }
   100% {
     transform: rotate(30deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

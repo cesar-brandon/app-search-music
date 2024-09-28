@@ -6,19 +6,29 @@ export default function TrackControls() {
     state: { selectedTrack, preview },
   } = useContext(TrackContext);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  console.log(preview ? "preview" : "no preview");
+  const handleEnded = () => {
+    setIsPlaying(false);
+  };
+
+  const updateProgress = () => {
+    setProgress((preview.currentTime / preview.duration) * 100);
+  };
 
   useEffect(() => {
+    if (!preview) return;
+
     setIsPlaying(true);
     preview.load();
     preview.play();
 
-    preview.addEventListener("ended", () => {
-      setIsPlaying(false);
-    });
+    preview.addEventListener("ended", handleEnded);
+    const progressInterval = setInterval(updateProgress);
+
     return () => {
-      preview.removeEventListener("ended", () => {});
+      preview.removeEventListener("ended", handleEnded);
+      clearInterval(progressInterval);
     };
   }, [selectedTrack]);
 
@@ -46,9 +56,12 @@ export default function TrackControls() {
   return (
     <div className="Controls">
       <div className="Controls__slide">
-        <div className="bar"></div>
+        <div className="bar">
+          <span style={{ width: `${progress}%` }} className="progress"></span>
+        </div>
         <div className="duration">
           {duration_ms ? calculateTime(duration_ms / 1000) : "0:00"}
+          <span className="current"> ~ 0:30</span>
         </div>
       </div>
       <div className="Controls__play" onClick={togglePlay}>
